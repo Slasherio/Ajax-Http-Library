@@ -3,41 +3,30 @@
  * FOR TESTING USING Fake Online REST API for Testing and Prototyping
  * https://jsonplaceholder.typicode.com/
  */
-const xhr = new EasyHttpRequest();
+const http = new EasyHttpRequest;
 
-const data = {
-    title: "Test request",
-    body: "This is test text"
-};
+const userData = {
+    "name": " Graham",
+    "username": "Bred",
+    "email": "Sincere@april",
+}
 
-xhr.get('https://jsonplaceholder.typicode.com/posts', function(error, post) {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log(post);
-    }
-});
+//GET
+http.get("https://jsonplaceholder.typicode.com/users")
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
 
-xhr.post('https://jsonplaceholder.typicode.com/posts', data, function(error, post) {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log(post);
-    }
-}); // => {"title": "Test request","body": "This is test text","id": 101}
+//POST
+http.post("https://jsonplaceholder.typicode.com/users", userData)
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
 
-xhr.put('https://jsonplaceholder.typicode.com/posts/1', data, function(error, post) {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log(post);
-    }
-}); // => {"title": "Test request","body": "This is test text","id": 1}
+//PUT
+http.put("https://jsonplaceholder.typicode.com/users/2", userData)
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
 
-xhr.delete('https://jsonplaceholder.typicode.com/posts/1', function(error, post) {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log(post);
-    }
-}); // => Post Deleted
+//DELETE    
+http.delete("https://jsonplaceholder.typicode.com/users/2")
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
